@@ -11,9 +11,7 @@ const getPosts = async () => {
     const fetchedData = dataJson.slice(0, 4);
     posts.value = fetchedData;
   } catch (error) {
-    console.log('====================================');
     console.log(error);
-    console.log('====================================');
   } finally {
     isLoadingPosts.value = false;
   }
