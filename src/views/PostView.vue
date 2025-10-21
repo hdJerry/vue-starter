@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, computed } from 'vue';
 
 const posts = ref<{ body: string; title: string }[]>([]);
 const isLoadingPosts = ref(true);
@@ -17,6 +17,8 @@ const getPosts = async () => {
   }
 };
 
+const hasPosts = computed(() => !isLoadingPosts.value && posts.value.length);
+
 onMounted(async () => {
   await getPosts();
 });
@@ -25,12 +27,13 @@ onMounted(async () => {
 <template>
   <div class="post-wrapper">
     <div v-if="isLoadingPosts" class="loading">Loading...</div>
-    <div class="cards-wrapper" v-else>
+    <div class="cards-wrapper" v-else-if="hasPosts">
       <div class="card" v-for="(post, index) in posts" :key="index">
         <h3 class="title">{{ post.title }}</h3>
         <p class="body">{{ post.body }}</p>
       </div>
     </div>
+    <div class="empty-state" v-else>Opps!!!, Nothing to see here</div>
   </div>
 </template>
 
@@ -48,9 +51,26 @@ onMounted(async () => {
       padding: 1rem;
       border: 1px solid var(--color-border);
       background: var(--color-background-soft);
-      box-shadow: 0 0.4px 2px rgba(195, 194, 194, 0.6);
       border-radius: 0.5rem;
+      transition: box-shadow 0.5s ease-in-out;
+      &:hover {
+        box-shadow: 0px 0px 5px rgba(50, 242, 155, 0.6);
+      }
+      cursor: pointer;
     }
+  }
+
+  .empty-state {
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 24px;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-shadow: 2px 4px 10px rgb(251, 15, 15);
+    color: white;
   }
 }
 </style>
