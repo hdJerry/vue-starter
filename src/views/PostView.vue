@@ -33,7 +33,7 @@ onMounted(async () => {
         <p class="body">{{ post.body }}</p>
       </div>
     </div>
-    <div class="empty-state" v-else>Opps!!!, Nothing to see here</div>
+    <div class="empty-state" v-else>Opps!, Nothing to see here</div>
   </div>
 </template>
 
