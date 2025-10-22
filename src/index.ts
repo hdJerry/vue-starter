@@ -3,17 +3,33 @@ import { execSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import chalk from "chalk";
+import { fileURLToPath } from "node:url";
 
-function log(msg: string) {
-  console.log(chalk.cyanBright(`→ ${msg}`));
-}
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-function success(msg: string) {
-  console.log(chalk.greenBright(`✔ ${msg}`));
-}
 
-function error(msg: string) {
-  console.error(chalk.redBright(`✖ ${msg}`));
+// Simple logging helpers
+const log = (msg: string) => console.log(chalk.cyanBright(`→ ${msg}`));
+const success = (msg: string) => console.log(chalk.greenBright(`✔ ${msg}`));
+const error = (msg: string) => console.error(chalk.redBright(`✖ ${msg}`));
+
+/**
+ * Recursively copy a folder
+ */
+function copyDir(src: string, dest: string) {
+  fs.mkdirSync(dest, { recursive: true });
+  for (const file of fs.readdirSync(src)) {
+    const srcPath = path.join(src, file);
+    const destPath = path.join(dest, file);
+    const stat = fs.statSync(srcPath);
+
+    if (stat.isDirectory()) {
+      copyDir(srcPath, destPath);
+    } else {
+      fs.copyFileSync(srcPath, destPath);
+    }
+  }
 }
 
 async function main() {
@@ -26,30 +42,33 @@ async function main() {
   }
 
   const targetDir = path.resolve(process.cwd(), projectName);
-
   if (fs.existsSync(targetDir)) {
     error(`Folder "${projectName}" already exists. Please choose another name.`);
     process.exit(1);
   }
 
+  const templateDir = path.resolve(__dirname, "../template");
+
   log(`Creating Vue starter in ${chalk.yellow(projectName)} ...`);
 
   try {
-    execSync(
-      `git clone --depth 1 https://github.com/hdjerry/vue-starter.git ${projectName}`,
-      { stdio: "ignore" }
-    );
-    success("Template cloned successfully.");
+    // 1️⃣ Copy template folder
+    copyDir(templateDir, targetDir);
+    success("Template copied successfully.");
 
-    // Remove .git so users start fresh
-    fs.rmSync(path.join(targetDir, ".git"), { recursive: true, force: true });
-    log("Removed old git history.");
+    // 2️⃣ Remove .git folder if any (in case your template has one)
+    const gitDir = path.join(targetDir, ".git");
+    if (fs.existsSync(gitDir)) {
+      fs.rmSync(gitDir, { recursive: true, force: true });
+      log("Removed .git folder.");
+    }
 
-    // Install dependencies
+    // 3️⃣ Install dependencies
     log("Installing dependencies (this may take a moment)...");
     execSync(`cd ${projectName} && yarn install`, { stdio: "inherit" });
     success("Dependencies installed.");
 
+    // 4️⃣ Done message
     console.log(`
 ${chalk.green.bold("🎉 All done!")}
 Now run the following commands:
