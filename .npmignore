@@ -1,0 +1,14 @@
+# Don't include source code or configs
+src/index.ts
+tsconfig.cli.json
+yarn.lock
+pnpm-lock.yaml
+package-lock.json
+.vscode/
+.DS_Store
+.git/
+node_modules/
+
+# You probably don't want tests or screenshots either
+tests/
+__tests__/
