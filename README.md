@@ -1,54 +1,140 @@
-# vue-starter
+# ⚡️ Vue Starter Kit
 
-This template should help get you started developing with Vue 3 in Vite.
+A modern **Vue 3 + Vite** starter template — preconfigured for fast development, unit testing, and API mocking.
 
-## Recommended IDE Setup
+> Get started quickly with a clean, scalable setup that’s production-ready out of the box.
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+---
 
-## Recommended Browser Setup
+## 🚀 Features
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+- 🧩 **Vue 3 + Vite** for instant hot reloads and blazing fast builds
+- 🧠 **TypeScript** support with `vue-tsc`
+- 🧪 **Vitest** configured for unit testing
+- 🎭 **Mock API setup** for isolated frontend testing
+- 🧹 **ESLint + Prettier** for code quality and formatting
+- 📦 Alias support (`@/`) for cleaner imports
+- 🧰 Ready for expansion with Pinia, Vue Router, and more
 
-## Type Support for `.vue` Imports in TS
+---
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## 🧑‍💻 Getting Started
 
-## Customize configuration
+### 1. Clone the repo
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+```bash
+git clone https://github.com/hdjerry/vue-starter.git
+cd vue-starter
+```
 
-## Project Setup
+### 2. Install dependencies
 
-```sh
+```bash
 yarn
+# or
+npm install
 ```
 
-### Compile and Hot-Reload for Development
+### 3. Start the development server
 
-```sh
+```bash
 yarn dev
+# or
+npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+App will be running at [http://localhost:5173](http://localhost:5173)
 
-```sh
-yarn build
-```
+---
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+## 🧪 Testing
 
-```sh
+### Run unit tests
+
+```bash
 yarn test:run
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+### Run tests in watch mode
 
-```sh
+```bash
+yarn test
+```
+
+---
+
+## 🧱 Project Structure
+
+```
+├── src/
+│   ├── assets/        # Assets folder
+│   ├── components/        # Vue components
+│   ├── composables/       # Reusable logic
+│   ├── mock/               # Mocked or real API modules
+│   ├── router/            # Vue Router setup
+│   ├── store/             # Pinia or Vuex store
+│   ├── tests/             # unit tests
+│   ├── view/             # Pages
+│   └── App.vue
+│             # Vitest unit tests
+├── vite.config.ts         # Vite configuration (includes @ alias)
+├── tsconfig.json
+└── package.json
+```
+
+---
+
+## 🧰 Linting & Formatting
+
+```bash
 yarn lint
+yarn format
+```
+
+---
+
+## 🧾 Recommended Setup
+
+- **Editor:** [VS Code](https://code.visualstudio.com/)
+
+- **Extensions:**
+  - [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+  - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+  - Disable _Vetur_
+
+- **Browser DevTools:**
+  - [Vue.js Devtools for Chrome](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
+  - [Vue.js Devtools for Firefox](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
+
+---
+
+## 🧑‍🏫 License
+
+[MIT](./LICENSE) © [Jerry Hogan](https://github.com/hdjerry)
+
+---
+
+### 💬 Want to Contribute?
+
+Feel free to open issues, submit pull requests, or fork the project.
+Let’s make Vue starters simpler and more powerful for everyone ✨
+
+```
+
+---
+
+### 🔧 Why this version is better
+- Highlights what makes your starter kit **different** (tests + mocking)
+- Gives **clear install and usage instructions**
+- Looks professional with emojis, sections, and syntax highlighting
+- Ready for sharing or open-source publication
+
+---
+
+Would you like me to tailor this further — for example:
+- Add **badges** (build, test, license, etc.)
+- Include **demo deploy instructions (Vercel/Netlify)**
+- Or make it **npm create–ready** (so users can do `npx create-vue-starter`)?
+
+That would make it even more polished depending on your goal (open-source showcase vs. internal use).
 ```
