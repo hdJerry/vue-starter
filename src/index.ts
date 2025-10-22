@@ -36,7 +36,7 @@ async function main() {
 
   try {
     execSync(
-      `git clone --depth 1 https://github.com/jerryhogan/vue-starter.git ${projectName}`,
+      `git clone --depth 1 https://github.com/hdjerry/vue-starter.git ${projectName}`,
       { stdio: "ignore" }
     );
     success("Template cloned successfully.");
