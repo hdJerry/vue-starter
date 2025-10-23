@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import TheWelcome from '@/components/TheWelcome.vue';
+import PageTemplate from '@/components/templates/PageTemplate.vue';
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <PageTemplate />
   </main>
 </template>
