@@ -1,0 +1,33 @@
+name: Run Template Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-template:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "yarn"
+
+      - name: Install template dependencies
+        working-directory: ./template
+        run: yarn install --frozen-lockfile
+
+      - name: Run lint (optional)
+        working-directory: ./template
+        run: yarn lint || echo "Lint warnings ignored for now"
+
+      - name: Run template tests
+        working-directory: ./template
+        run: yarn test:run || yarn test
