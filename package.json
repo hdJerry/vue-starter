@@ -1,6 +1,6 @@
 {
 	"name": "create-vue-starter-with-test",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"private": false,
 	"description": "A CLI to quickly scaffold a Vue 3 + Vite + Vitest starter kit.",
 	"bin": {
