@@ -1,12 +1,16 @@
 <script setup lang="ts">
-defineProps<{
+import { computed } from 'vue';
+
+const props = defineProps<{
   label: string
   type?: 'button' | 'submit'
-}>()
+}>();
+
+const btnType = computed(() => props.type || 'button')
 </script>
 
 <template>
-  <button :type="type || 'button'" class="base-button">
+  <button :type="btnType" class="base-button">
     {{ label }}
   </button>
 </template>
